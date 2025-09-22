@@ -1,0 +1,11 @@
+{
+    "id": "Balatrillionaire",
+    "name": "Balatrillionaire",
+    "author": ["BusterBussin"],
+    "description": "Time to become a balatrillionaire.",
+    "prefix": "mvan",
+    "main_file": "Balatrillionaire.lua",
+    "badge_colour": "c7638f",
+    "dependencies": ["Steamodded (>=1.0.0~BETA-0827c)"],
+    "version": "1.0.0"
+}
