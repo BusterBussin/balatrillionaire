@@ -1,5 +1,7 @@
 SMODS.Atlas {
     key = "Balatrillionaire",
+    pool = {"Joker"},
+    unlocked = true,
     path = "Balatrillionaire.png",
     px = 71,
     py = 95,
