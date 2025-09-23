@@ -1,49 +1,56 @@
-SMODS.Atlas {
-    key = "Balatrillionaire",
-    pool = {"Joker"},
-    unlocked = true,
-    path = "Balatrillionaire.png",
+--- STEAMODDED METADATA
+--- MOD_NAME: Balatrillionaire
+--- MOD_ID: balatrillionaire
+--- PREFIX: trillion
+--- VERSION: 1.0
+
+-- Atlas definition
+SMODS.Atlas{
+    key = "trillion_balatrillionaire",
+    path = "Balatrillionaire.png", -- Steamodded handles 1x/2x
     px = 71,
     py = 95,
+    discovered = true,
 }
 
-SMODS.Joker {
-    key = "jokerofgreed",
+-- Joker definition
+SMODS.Joker{
+    key = "trillion_jokerofgreed",
+    atlas = "trillion_balatrillionaire",
+    rarity = 1,
+    cost = 2,
+    discovered = true,       -- force it to show in collection
+    spawnable = true,        -- allow it to spawn in runs
+    deck_spawn = { red = 1 },-- define which deck pool it can spawn in
     loc_txt = {
         name = "Joker of Greed",
         text = {
             "{C:mult}+0.2 {} Mult for every {C:chips}$5 {}, on top of 1x"
-        },
-    },
-    config = {
-        -- Base multiplier for each $5 spent
-        extra = {
-            per5 = 0.2
         }
     },
+    config = {
+        extra = { per5 = 0.2 }
+    },
     loc_vars = function(self, info_queue, card)
-        -- Returns a table where #1# in loc_txt references the per5 multiplier
-        return { vars = { card.config.extra.per5 } }
+        local per5 = (card.config and card.config.extra and card.config.extra.per5) or 0
+        return { vars = { per5 } }
     end,
-    rarity = 2,
-    atlas = "Balatrillionaire",
-    pos = { x = 0, y = 0 },
-    cost = 5,
     calculate = function(self, card, context)
-        if context.joker_main then
-            -- Determine how many $5 increments were spent
-            local increments = math.floor(context.chips / 5)  -- assumes context.chips is the amount spent
-            local added_mult = increments * card.config.extra.per5
-
-            return {
-                mult_mod = added_mult,
-                -- Localized message, using the per5 value
-                message = localize { 
-                    type = "variable", 
-                    key = "a_mult", 
-                    vars = { added_mult } 
-                }
+    if context.joker_main then
+        local chips = context.chips or 0
+        local increments = math.floor(chips / 5)
+        local mult_factor = 1 + (increments * ((card.config.extra and card.config.extra.per5) or 0))
+        return {
+            mult_mod = context.mult * mult_factor,  -- multiply the existing mult
+            message = localize{
+                type = "variable",
+                key = "a_mult",
+                vars = { mult_factor }
             }
-        end
-    end,
+        }
+    end
+end
+
+
+
 }
