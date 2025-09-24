@@ -16,7 +16,7 @@ SMODS.Joker{
     loc_txt = {
         name = "Joker of Greed",
         text = {
-            "Multiplies mult by {C:mult}+0.25{} for every {C:money}$5{} you have."
+            "Multiplies mult by {C:mult}+0.2{} for every {C:money}$5{} you have."
         }
     },
 
