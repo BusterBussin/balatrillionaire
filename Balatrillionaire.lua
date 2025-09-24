@@ -8,10 +8,11 @@ SMODS.Atlas{
 SMODS.Joker{
     key        = "trillion_jokerofgreed",
     atlas      = "trillion_balatrillionaire",
-    rarity     = 1,
-    cost       = 2,
+    rarity     = 2,
+    cost       = 5,
     discovered = true,
     spawnable  = true,
+    blueprint_compat = true,
 
     loc_txt = {
         name = "Joker of Greed",
