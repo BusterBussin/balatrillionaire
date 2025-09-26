@@ -39,13 +39,13 @@ SMODS.Joker{
 
 
 SMODS.Joker{
-    key = "trillion_equalexchange",
-    atlas = "trillion_balatrillionaire",
-    pos = { x = 1, y = 0 },
-    rarity = 3,
-    cost = 8,
+    key        = "trillion_equalexchange",
+    atlas      = "trillion_balatrillionaire",
+    pos        = { x = 1, y = 0 },
+    rarity     = 3,
+    cost       = 8,
     discovered = true,
-    spawnable = true,
+    spawnable  = true,
     blueprint_compat = true,
 
     loc_txt = {
@@ -60,18 +60,20 @@ SMODS.Joker{
         if context.joker_main then
             local ace_count = 0
             for _, c in ipairs(context.scoring_hand or {}) do
+                -- Ace has ID 14
                 if c.get_id and c:get_id() == 14 then
                     ace_count = ace_count + 1
                 end
             end
 
             if ace_count > 0 then
-                local mult_bonus = 2 ^ ace_count
-                local money_cost = 7 * ace_count
+                -- subtract money directly (allows negative)
+                G.GAME.dollars = (G.GAME.dollars or 0) - (7 * ace_count)
 
+                -- quadruple mult per Ace
                 return {
-                    x_mult_mod = mult_bonus,  -- multiplies final mult
-                    money_mod  = -money_cost, -- deducts money
+                    x_mult_mod = 4 ^ ace_count,
+                    message = "-$7",
                     message    = "Equal Exchange!"
                 }
             end
