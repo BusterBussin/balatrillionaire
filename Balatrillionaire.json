@@ -7,5 +7,5 @@
     "main_file": "Balatrillionaire.lua",
     "badge_colour": "c7638f",
     "dependencies": ["Steamodded (>=1.0.0~BETA-0827c)"],
-    "version": "1.1.0"
+    "version": "1.2.0"
 }

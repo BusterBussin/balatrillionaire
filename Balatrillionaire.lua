@@ -146,8 +146,8 @@ SMODS.Joker{ --Riff Raff but better
         unlock = { [1] = 'Unlocked by default.' }
     },
     pos = { x = 3, y = 0 },
-    cost = 4,
-    rarity = 1,
+    cost = 20,
+    rarity = 4,
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
