@@ -38,58 +38,58 @@ SMODS.Joker{
 }
 
 
--- SMODS.Joker{ --Equal Exchange
---     key = "trillion_equalexchange",
---     config = {
---         extra = {
---             dollars = 25,
---             Xmult = 4
---         }
---     },
---     loc_txt = {
---         ['name'] = 'Equal Exchange',
---         ['text'] = {
---             [1] = 'For each{C:green} ace{} played, quadruples your{C:red} mult{}.',
---             [2] = 'Lose {C:attention}$25{} per {C:green}ace{} played,'
---         },
---         ['unlock'] = {
---             [1] = 'Unlocked by default.'
---         }
---     },
---     pos = {
---         x = 1,
---         y = 0
---     },
---     cost = 20,
---     rarity = 4,
---     blueprint_compat = false,
---     eternal_compat = true,
---     perishable_compat = true,
---     unlocked = true,
---     discovered = true,
---     atlas = 'trillion_balatrillionaire',
---     in_pool = function(self, args)
---           return (
---           not args 
---           or args.source ~= 'sho' and args.source ~= 'buf' and args.source ~= 'jud' and args.source ~= 'rif' 
---           or args.source == 'rta' or args.source == 'sou' or args.source == 'uta' or args.source == 'wra'
---           )
---           and true
---       end,
+SMODS.Joker{ --Equal Exchange
+    key = "trillion_equalexchange",
+    config = {
+        extra = {
+            dollars = 25,
+            Xmult = 4
+        }
+    },
+    loc_txt = {
+        ['name'] = 'Equal Exchange',
+        ['text'] = {
+            [1] = 'For each{C:green} ace{} played, quadruples your{C:red} mult{}.',
+            [2] = 'Lose {C:attention}$25{} per {C:green}ace{} played,'
+        },
+        ['unlock'] = {
+            [1] = 'Unlocked by default.'
+        }
+    },
+    pos = {
+        x = 1,
+        y = 0
+    },
+    cost = 20,
+    rarity = 4,
+    blueprint_compat = false,
+    eternal_compat = true,
+    perishable_compat = true,
+    unlocked = true,
+    discovered = true,
+    atlas = 'trillion_balatrillionaire',
+    in_pool = function(self, args)
+          return (
+          not args 
+          or args.source ~= 'sho' and args.source ~= 'buf' and args.source ~= 'jud' and args.source ~= 'rif' 
+          or args.source == 'rta' or args.source == 'sou' or args.source == 'uta' or args.source == 'wra'
+          )
+          and true
+      end,
 
---     calculate = function(self, card, context)
---         if context.individual and context.cardarea == G.play  then
---             if context.other_card:get_id() == 14 then
---                 return {
---                     dollars = -card.ability.extra.dollars,
---                     extra = {
---                         Xmult = card.ability.extra.Xmult
---                         }
---                 }
---             end
---         end
---     end
--- }
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play  then
+            if context.other_card:get_id() == 14 then
+                return {
+                    dollars = -card.ability.extra.dollars,
+                    extra = {
+                        Xmult = card.ability.extra.Xmult
+                        }
+                }
+            end
+        end
+    end
+}
 
 SMODS.Joker{ --Infinite Wealth
     key = "trillion_infinitewealth",
